@@ -57,10 +57,10 @@
                 </a>
                 <ul class="submenu">
                     <li>
-                        <a href="my_cars.html">My Cars</a>
+                        <a href="{{route('car.index')}}">My Cars</a>
                     </li>
                     <li>
-                        <a href="watchlist.html">My Favourite Cars</a>
+                        <a href="{{route('car.watchlist')}}">My Favourite Cars</a>
                     </li>
                     <li>
                         <form action="#" method="post">

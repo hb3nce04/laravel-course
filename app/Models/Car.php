@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,6 +35,8 @@ class Car extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    protected $with = ['primaryImage', 'city', 'carType', 'fuelType', 'maker', 'model'];
 
     public function carType(): BelongsTo {
         return $this->belongsTo(CarType::class);
@@ -73,5 +76,9 @@ class Car extends Model
 
     public function favouredUsers(): BelongsToMany {
         return $this->belongsToMany(User::class, 'favourite_cars');
+    }
+
+    public function getCreateDate(): string {
+        return (new Carbon($this->created_at))->format('Y-m-d');
     }
 }
