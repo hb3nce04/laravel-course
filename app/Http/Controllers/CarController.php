@@ -13,7 +13,8 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = User::find(1)->cars()->orderBy('created_at', 'desc')->get();
+        // TODO: ->paginate(15)->appends(['sort' => 'filter']);
+        $cars = User::find(1)->cars()->orderBy('created_at', 'desc')->paginate(15);
         return view('car.index', compact('cars'));
     }
 
@@ -62,17 +63,16 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
-
+        dd('teszt');
     }
     public function search() {
         $query = Car::where('published_at', '<', now())->orderBy('published_at', 'desc');
-        $count = $query->count();
-        $cars = $query->limit(30)->get();
-        return view('car.search', compact('cars', 'count'));
+        $cars = $query->paginate(15);
+        return view('car.search', compact('cars'));
     }
 
     public function watchlist() {
-        $cars = User::find(1)->favouriteCars;
+        $cars = User::find(1)->favouriteCars()->paginate(15);
         return view('car.watchlist', compact('cars'));
     }
 }

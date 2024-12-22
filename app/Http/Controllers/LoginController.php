@@ -9,4 +9,8 @@ class LoginController extends Controller
     public function create() {
         return view('auth.login');
     }
+
+    public function resetPassword() {
+        return view('auth.reset-password');
+    }
 }

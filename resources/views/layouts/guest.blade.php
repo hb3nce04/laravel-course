@@ -10,13 +10,11 @@
                         </a>
                     </div>
                     {{$slot}}
-                    <div class="grid grid-cols-2 gap-1 social-auth-buttons">
-                        <x-google-button/>
-                        <x-fb-button/>
-                    </div>
-                    <div class="login-text-dont-have-account">
-                        {{$footerLink}}
-                    </div>
+                    @if($footerLink ?? null)
+                        <div class="login-text-dont-have-account">
+                            {{$footerLink}}
+                        </div>
+                    @endif
                 </div>
                 <div class="auth-page-image">
                     <img src="/img/car-png-39071.png" alt="" class="img-responsive"/>
