@@ -3,18 +3,19 @@
         <div class="container-small">
             <h1 class="car-details-page-title">Add new car</h1>
             <form
-                action=""
+                action="{{route('car.store')}}"
                 method="POST"
                 enctype="multipart/form-data"
                 class="card add-new-car-form"
             >
+                @csrf
                 <div class="form-content">
                     <div class="form-details">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label>Maker</label>
-                                    <select>
+                                    <select name="maker">
                                         <option value="">Maker</option>
                                         <option value="bmw">BMW</option>
                                         <option value="lexus">Lexus</option>
@@ -26,7 +27,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Model</label>
-                                    <select>
+                                    <select name="model">
                                         <option value="">Model</option>
                                     </select>
                                 </div>
@@ -34,7 +35,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Year</label>
-                                    <select>
+                                    <select name="year">
                                         <option value="">Year</option>
                                         <option value="2024">2024</option>
                                         <option value="2023">2023</option>
@@ -104,19 +105,19 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Price</label>
-                                    <input type="number" placeholder="Price" />
+                                    <input type="number" placeholder="Price" name="price"/>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Vin Code</label>
-                                    <input placeholder="Vin Code" />
+                                    <input placeholder="Vin Code" name="vin"/>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Mileage (ml)</label>
-                                    <input placeholder="Mileage" />
+                                    <input placeholder="Mileage" name="mileage"/>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +162,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>City</label>
-                                    <select>
+                                    <select name="city">
                                         <option value="">City</option>
                                     </select>
                                 </div>
@@ -171,13 +172,13 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input placeholder="Address" />
+                                    <input placeholder="Address" name="address"/>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Phone</label>
-                                    <input placeholder="Phone" />
+                                    <input placeholder="Phone" name="phone"/>
                                 </div>
                             </div>
                         </div>
@@ -265,7 +266,7 @@
                         </div>
                         <div class="form-group">
                             <label>Detailed Description</label>
-                            <textarea rows="10"></textarea>
+                            <textarea rows="10" name="description"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="checkbox">

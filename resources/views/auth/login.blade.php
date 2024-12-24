@@ -1,11 +1,18 @@
 <x-guest-layout title="Login" bodyClass="page-login">
     <h1 class="auth-page-title">Login</h1>
-    <form action="" method="post">
-        <div class="form-group">
-            <input type="email" placeholder="Your Email"/>
+    <form action="{{route('auth.local')}}" method="post">
+        @csrf
+        <div class="form-group @error('email') has-error @enderror">
+            <input type="email" placeholder="Your Email" name="email" value="{{old('email')}}" autofocus required/>
+            @error('email')
+            <div class="error-message">{{$message}}</div>
+            @enderror
         </div>
-        <div class="form-group">
-            <input type="password" placeholder="Your Password"/>
+        <div class="form-group @error('password') has-error @enderror">
+            <input type="password" placeholder="Your Password" name="password" required/>
+            @error('password')
+            <div class="error-message">{{$message}}</div>
+            @enderror
         </div>
         <div class="text-right mb-medium">
             <a href="{{route('reset-password')}}" class="auth-page-password-reset"

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCarRequest;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
@@ -14,7 +16,8 @@ class CarController extends Controller
     public function index()
     {
         // TODO: ->paginate(15)->appends(['sort' => 'filter']);
-        $cars = User::find(1)->cars()->orderBy('created_at', 'desc')->paginate(15);
+        $userId = Auth::user()->id;
+        $cars = User::find($userId)->cars()->orderBy('created_at', 'desc')->paginate(15);
         return view('car.index', compact('cars'));
     }
 
@@ -29,9 +32,9 @@ class CarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCarRequest $request)
     {
-
+        return "asd";
     }
 
     /**
@@ -72,7 +75,8 @@ class CarController extends Controller
     }
 
     public function watchlist() {
-        $cars = User::find(1)->favouriteCars()->paginate(15);
+        $userId = Auth::user()->id;
+        $cars = User::find($userId)->favouriteCars()->paginate(15);
         return view('car.watchlist', compact('cars'));
     }
 }

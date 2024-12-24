@@ -4,7 +4,7 @@
         <section>
             <div class="container">
                 <div class="flex justify-between items-center">
-                    <h2>My Favourite Cars</h2>
+                    <h1 class="car-details-page-title">My Favourite Cars</h1>
                     @if($cars->total() > 0)
                         <div class="pagination-summary">
                             <p>Showing {{$cars->firstItem()}} to {{$cars->lastItem()}} of {{$cars->total()}} results</p>

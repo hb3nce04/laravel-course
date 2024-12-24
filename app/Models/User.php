@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property int $id
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -20,7 +23,8 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'phone',
         'google_id',
@@ -57,5 +61,9 @@ class User extends Authenticatable
 
     public function cars(): HasMany {
         return $this->hasMany(Car::class);
+    }
+
+    public function getFullName(): string {
+        return "$this->first_name $this->last_name";
     }
 }

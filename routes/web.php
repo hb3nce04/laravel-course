@@ -2,16 +2,23 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CarController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\SignupController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+Route::middleware('guest')->group(function () {
+    Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/reset-password', [AuthController::class, 'resetPassword'])->name('reset-password');
+    Route::post('/auth', [AuthController::class, 'local'])->name('auth.local');
+    Route::post('/users', [UserController::class, 'store'])->name('user.store');
+});
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::get('/car/watchlist', [CarController::class, 'watchlist'])->name('car.watchlist');
+    Route::resource('car', CarController::class)->except(['show']);
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('/car/search', [CarController::class, 'search'])->name('car.search');
-Route::get('/car/watchlist', [CarController::class, 'watchlist'])->name('car.watchlist');
-Route::resource('car', CarController::class);
-
-Route::get('/signup', [SignupController::class, 'create'])->name('signup');
-Route::get('/login', [LoginController::class, 'create'])->name('login');
-Route::get('/reset-password', [LoginController::class, 'resetPassword'])->name('reset-password');
+Route::resource('car', CarController::class)->only(['show']);

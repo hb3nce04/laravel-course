@@ -2,7 +2,7 @@
     <main>
         <div class="container">
             <h1 class="car-details-page-title">{{$car->maker->name}} {{$car->model->name}} - {{$car->year}}</h1>
-            <div class="car-details-region">{{$car->city->name}} - {{$car->published_at}}</div>
+            <div class="car-details-region">{{$car->city->name}} - {{$car->getPublishDate()}}</div>
 
             <div class="car-details-content">
                 <div class="car-images-and-description">
@@ -81,7 +81,7 @@
                 <div class="car-details card">
                     <div class="flex items-center justify-between">
                         <p class="car-details-price">${{$car->price}}</p>
-                        <button class="btn-heart">
+                        @auth <button class="btn-heart">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -96,7 +96,7 @@
                                     d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
                                 />
                             </svg>
-                        </button>
+                        </button>@endauth
                     </div>
 
                     <hr />
@@ -145,7 +145,7 @@
                             class="car-details-owner-image"
                         />
                         <div>
-                            <h3 class="car-details-owner">{{$car->owner->name}}</h3>
+                            <h3 class="car-details-owner">{{$car->owner->getFullName()}}</h3>
                             <div class="text-muted">{{$car->owner->cars()->count()}} cars</div>
                         </div>
                     </div>

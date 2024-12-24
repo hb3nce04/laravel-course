@@ -79,6 +79,10 @@ class Car extends Model
     }
 
     public function getCreateDate(): string {
-        return (new Carbon($this->created_at))->format('Y-m-d');
+        return (new Carbon($this->created_at))->diffForHumans();
+    }
+
+    public function getPublishDate(): string {
+        return (new Carbon($this->published_at))->diffForHumans();
     }
 }
