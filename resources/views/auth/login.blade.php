@@ -2,22 +2,18 @@
     <h1 class="auth-page-title">Login</h1>
     <form action="{{route('auth.local')}}" method="post">
         @csrf
-        <div class="form-group @error('email') has-error @enderror">
-            <input type="email" placeholder="Your Email" name="email" value="{{old('email')}}" autofocus required/>
-            @error('email')
-            <div class="error-message">{{$message}}</div>
-            @enderror
-        </div>
-        <div class="form-group @error('password') has-error @enderror">
-            <input type="password" placeholder="Your Password" name="password" required/>
-            @error('password')
-            <div class="error-message">{{$message}}</div>
-            @enderror
-        </div>
-        <div class="text-right mb-medium">
+        <x-form.input name="email" type="text" placeholder="Your Email" autofocus="true" required="true"/>
+        <x-form.input name="password" type="password" placeholder="Your Password" required="true"/>
+        <div class="text-right mb-small">
             <a href="{{route('reset-password')}}" class="auth-page-password-reset"
             >Reset Password</a
             >
+        </div>
+        <div class="form-group">
+            <label class="checkbox">
+                <input type="checkbox" name="remember_me" value="1" @checked(old('remember_me'))/>
+                Remember me
+            </label>
         </div>
         <button class="btn btn-primary btn-login w-full">Login</button>
         <div class="grid grid-cols-2 gap-1 social-auth-buttons">

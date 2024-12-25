@@ -28,7 +28,6 @@ class Car extends Model
         'user_id',
         'city_id',
         'address',
-        'phone',
         'description',
         'published_at',
         'created_at',
@@ -84,5 +83,9 @@ class Car extends Model
 
     public function getPublishDate(): string {
         return (new Carbon($this->published_at))->diffForHumans();
+    }
+
+    public function likedByUser(User $user): bool {
+        return $this->favouredUsers()->where('user_id', $user->id)->exists();
     }
 }

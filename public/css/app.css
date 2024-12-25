@@ -946,6 +946,11 @@ a.pagination-item:hover {
 
 .car-details-owner-image {
     width: 44px;
+    border-radius: 50%;
+}
+
+.wrapper {
+    position: relative;
 }
 
 .car-details-phone {
@@ -962,6 +967,8 @@ a.pagination-item:hover {
 }
 
 .car-details-phone-view {
+    background-color: inherit;
+    color: var(--text-color);
     position: absolute;
     right: 0;
     top: 0;
@@ -969,9 +976,10 @@ a.pagination-item:hover {
     padding: 0.5rem;
     display: inline-block;
     width: 80px;
-    font-weight: normal;
-    color: var(--text-color);
+    border: none;
     transition: all 0.3s;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .car-details-phone-view:hover {

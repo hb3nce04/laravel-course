@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class TestComponent extends Component
+class FormInput extends Component
 {
     /**
      * Create a new component instance.
@@ -21,8 +21,6 @@ class TestComponent extends Component
      */
     public function render(): View|Closure|string
     {
-        return <<<'blade'
-<div {{$attributes}}>{{$slot}}</div>
-blade;
+        return view('components.form.input');
     }
 }

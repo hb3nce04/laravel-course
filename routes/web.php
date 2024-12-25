@@ -11,11 +11,14 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::get('/reset-password', [AuthController::class, 'resetPassword'])->name('reset-password');
     Route::post('/auth', [AuthController::class, 'local'])->name('auth.local');
+    Route::get('/auth/google', [AuthController::class, 'google'])->name('auth.google');
+    Route::get('/auth/google/callback', [AuthController::class, 'googleCallback']);
     Route::post('/users', [UserController::class, 'store'])->name('user.store');
 });
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::get('/car/watchlist', [CarController::class, 'watchlist'])->name('car.watchlist');
+    Route::post('/car/like/{id}', [CarController::class, 'like'])->name('car.like');
     Route::resource('car', CarController::class)->except(['show']);
 });
 

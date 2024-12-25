@@ -11,9 +11,12 @@
                         </div>
                     @endif
                 </div>
+                @if(count($cars) === 0)
+                    <div class="flex items-center">You don't have any favourite car yet.</div>
+                @endif
                 <div class="car-items-listing">
                     @foreach($cars as $car)
-                        <x-car-item :$car :isInWatchList="true"/>
+                        <x-car-item :$car/>
                     @endforeach
                 </div>
                 {{$cars->onEachSide(1)->links()}}

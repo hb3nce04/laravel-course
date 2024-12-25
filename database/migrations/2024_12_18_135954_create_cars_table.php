@@ -24,7 +24,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('city_id')->constrained('cities');
             $table->string('address', 255);
-            $table->string('phone', 45);
             $table->longText('description')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

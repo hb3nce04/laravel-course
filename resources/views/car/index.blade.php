@@ -1,6 +1,5 @@
 <x-app-layout bodyClass="page-my-cars" title="My Cars">
     <main>
-        <div>
             <div class="container">
                 <h1 class="car-details-page-title">My Cars</h1>
                 <div class="card p-medium">
@@ -29,6 +28,14 @@
                                     <td>{{$car->getCreateDate()}}</td>
                                     <td>{{$car->published_at ? 'Yes' : 'No'}}</td>
                                     <td class="">
+                                        <a
+                                            href="{{route('car.show', $car)}}"
+                                            class="btn btn-edit inline-flex items-center"
+                                        >
+                                            <!--svg-->
+
+                                            see
+                                        </a>
                                         <a
                                             href="{{route('car.edit', $car)}}"
                                             class="btn btn-edit inline-flex items-center"
@@ -106,6 +113,5 @@
                     {{$cars->onEachSide(1)->links()}}
                 </div>
             </div>
-        </div>
     </main>
 </x-app-layout>

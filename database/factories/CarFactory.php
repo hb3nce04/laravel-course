@@ -37,9 +37,6 @@ class CarFactory extends Factory
             'user_id' => User::inRandomOrder()->first()->id,
             'city_id' => City::inRandomOrder()->first()->id,
             'address' => fake()->address(),
-            'phone' => function (array $attributes) {
-                return User::find($attributes['user_id'])->phone;
-            },
             'description' => fake()->text(2000),
             'published_at' => fake()->optional(0.9)->dateTimeBetween('-1 month', '+1 day')
         ];

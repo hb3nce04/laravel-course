@@ -1,13 +1,15 @@
 <x-app-layout title="Change Car">
     <main>
         <div class="container-small">
-            <h1 class="car-details-page-title">Add new car</h1>
+            <h1 class="car-details-page-title">Edit car</h1>
             <form
-                action=""
+                action="{{route('car.update', $car)}}"
                 method="POST"
                 enctype="multipart/form-data"
                 class="card add-new-car-form"
             >
+                @csrf
+                {{method_field('put')}}
                 <div class="form-content">
                     <div class="form-details">
                         <div class="row">
@@ -15,10 +17,9 @@
                                 <div class="form-group">
                                     <label>Maker</label>
                                     <select>
-                                        <option value="">Maker</option>
-                                        <option value="bmw">BMW</option>
-                                        <option value="lexus">Lexus</option>
-                                        <option value="mercedes">Mercedes</option>
+                                        @foreach(\App\Models\Maker::all() as $maker)
+                                            <option value="{{$maker->id}}">{{$maker->name}}</option>
+                                        @endforeach
                                     </select>
                                     <p class="error-message">This field is required</p>
                                 </div>
@@ -26,8 +27,10 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Model</label>
-                                    <select>
-                                        <option value="">Model</option>
+                                    <select name="model">
+                                        @foreach(\App\Models\Model::all() as $model)
+                                            <option value="{{$model->id}}">{{$model->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -36,41 +39,9 @@
                                     <label>Year</label>
                                     <select>
                                         <option value="">Year</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2020">2020</option>
-                                        <option value="2019">2019</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2017">2017</option>
-                                        <option value="2016">2016</option>
-                                        <option value="2015">2015</option>
-                                        <option value="2014">2014</option>
-                                        <option value="2013">2013</option>
-                                        <option value="2012">2012</option>
-                                        <option value="2011">2011</option>
-                                        <option value="2010">2010</option>
-                                        <option value="2009">2009</option>
-                                        <option value="2008">2008</option>
-                                        <option value="2007">2007</option>
-                                        <option value="2006">2006</option>
-                                        <option value="2005">2005</option>
-                                        <option value="2004">2004</option>
-                                        <option value="2003">2003</option>
-                                        <option value="2002">2002</option>
-                                        <option value="2001">2001</option>
-                                        <option value="2000">2000</option>
-                                        <option value="1999">1999</option>
-                                        <option value="1998">1998</option>
-                                        <option value="1997">1997</option>
-                                        <option value="1996">1996</option>
-                                        <option value="1995">1995</option>
-                                        <option value="1994">1994</option>
-                                        <option value="1993">1993</option>
-                                        <option value="1992">1992</option>
-                                        <option value="1991">1991</option>
-                                        <option value="1990">1990</option>
+                                        @foreach(range(date("Y"), 1950) as $year)
+                                            <option value="{{$year}}">{{$year}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -78,75 +49,47 @@
                         <div class="form-group">
                             <label>Car Type</label>
                             <div class="row">
-                                <div class="col">
-                                    <label class="inline-radio">
-                                        <input type="radio" name="car_type" value="sedan" />
-                                        Sedan
-                                    </label>
-                                </div>
-
-                                <div class="col">
-                                    <label class="inline-radio">
-                                        <input type="radio" name="car_type" value="hatchback" />
-                                        Hatchback
-                                    </label>
-                                </div>
-
-                                <div class="col">
-                                    <label class="inline-radio">
-                                        <input type="radio" name="car_type" value="suv" />
-                                        SUV (Sport Utility Vehicle)
-                                    </label>
-                                </div>
+                                @foreach(\App\Models\CarType::all() as $carType)
+                                    <div class="col">
+                                        <label class="inline-radio">
+                                            <input type="radio" name="car_type" value="{{$carType->id}}" />
+                                            {{$carType->name}}
+                                        </label>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label>Price</label>
-                                    <input type="number" placeholder="Price" />
+                                    <input type="number" placeholder="Price" value="{{$car->price}}" />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Vin Code</label>
-                                    <input placeholder="Vin Code" />
+                                    <input placeholder="Vin Code" value="{{$car->vin}}"/>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Mileage (ml)</label>
-                                    <input placeholder="Mileage" />
+                                    <input placeholder="Mileage" value="{{$car->mileage}}"/>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Fuel Type</label>
                             <div class="row">
-                                <div class="col">
-                                    <label class="inline-radio">
-                                        <input type="radio" name="fuel_type" value="gasoline" />
-                                        Gasoline
-                                    </label>
-                                </div>
-                                <div class="col">
-                                    <label class="inline-radio">
-                                        <input type="radio" name="fuel_type" value="diesel" />
-                                        Diesel
-                                    </label>
-                                </div>
-                                <div class="col">
-                                    <label class="inline-radio">
-                                        <input type="radio" name="fuel_type" value="electric" />
-                                        Electric
-                                    </label>
-                                </div>
-                                <div class="col">
-                                    <label class="inline-radio">
-                                        <input type="radio" name="fuel_type" value="hybrid" />
-                                        Hybrid
-                                    </label>
-                                </div>
+                                @foreach(\App\Models\FuelType::all() as $fuelType)
+                                    <div class="col">
+                                        <label class="inline-radio">
+                                            <input type="radio" name="fuel_type" value="{{$fuelType->id}}" />
+                                            {{$fuelType->name}}
+                                        </label>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="row">
@@ -154,7 +97,9 @@
                                 <div class="form-group">
                                     <label>State/Region</label>
                                     <select>
-                                        <option value="">State/Region</option>
+                                        @foreach(\App\Models\State::all() as $state)
+                                            <option value="{{$state->id}}">{{$state->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -171,13 +116,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input placeholder="Address" />
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>Phone</label>
-                                    <input placeholder="Phone" />
+                                    <input placeholder="Address" value="{{$car->address}}"/>
                                 </div>
                             </div>
                         </div>
@@ -265,11 +204,11 @@
                         </div>
                         <div class="form-group">
                             <label>Detailed Description</label>
-                            <textarea rows="10"></textarea>
+                            <textarea rows="10">{{$car->description}}</textarea>
                         </div>
                         <div class="form-group">
                             <label class="checkbox">
-                                <input type="checkbox" name="published" />
+                                <input type="checkbox" name="published" checked="{{$car->is_published}}" />
                                 Published
                             </label>
                         </div>
@@ -299,7 +238,7 @@
                 </div>
                 <div class="p-medium" style="width: 100%">
                     <div class="flex justify-end gap-1">
-                        <button type="button" class="btn btn-default">Reset</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
                         <button class="btn btn-primary">Submit</button>
                     </div>
                 </div>

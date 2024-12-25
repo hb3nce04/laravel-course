@@ -23,11 +23,13 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $firstName = fake()->firstName();
         return [
-            'first_name' => fake()->firstName(),
+            'first_name' => $firstName,
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->numerify('#########'),
+            'avatar' => "https://api.dicebear.com/8.x/initials/svg?radius=50&seed=$firstName",
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),

@@ -18,7 +18,7 @@ class CarImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'image_path' => fake()->imageUrl(),
+            'image_path' => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo2hb6Gjy5UFPJUTHFdkUdUT_xjknR5a6u_g9xK_V5FFrxjo-0yOUeJ0tYpfdctg-DWQk&usqp=CAU",
             'position' => function(array $attributes) {
                 return Car::find($attributes['carId'])->images()->count() + 1;
             }

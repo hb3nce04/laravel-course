@@ -5,44 +5,13 @@
     @endif
     <form action="{{route('user.store')}}" method="post">
         @csrf
-        <div class="form-group @error('email') has-error @enderror">
-            <input type="email" placeholder="Your Email" name="email" value="{{old('email')}}" autofocus required/>
-            @error('email')
-            <div class="error-message">{{$message}}</div>
-            @enderror
-        </div>
-        <div class="form-group @error('password') has-error @enderror">
-            <input type="password" placeholder="Your Password" name="password" required/>
-            @error('password')
-            <div class="error-message">{{$message}}</div>
-            @enderror
-        </div>
-        <div class="form-group @error('password2') has-error @enderror">
-            <input type="password" placeholder="Repeat Password" name="password2"
-                   required/>
-            @error('password2')
-            <div class="error-message">{{$message}}</div>
-            @enderror
-        </div>
+        <x-form.input name="email" type="email" placeholder="Your Email" autofocus="true" required="true"/>
+        <x-form.input name="password" type="password" placeholder="Your Password" required="true"/>
+        <x-form.input name="password2" type="password" placeholder="Repeat Password" required="true"/>
         <hr/>
-        <div class="form-group @error('first_name') has-error @enderror">
-            <input type="text" placeholder="First Name" name="first_name" value="{{old('first_name')}}" required/>
-            @error('first_name')
-            <div class="error-message">{{$message}}</div>
-            @enderror
-        </div>
-        <div class="form-group @error('last_name') has-error @enderror">
-            <input type="text" placeholder="Last Name" name="last_name" value="{{old('last_name')}}" required/>
-            @error('last_name')
-            <div class="error-message">{{$message}}</div>
-            @enderror
-        </div>
-        <div class="form-group @error('phone') has-error @enderror">
-            <input type="tel" placeholder="Phone" name="phone" value="{{old('phone')}}" required/>
-            @error('phone')
-            <div class="error-message">{{$message}}</div>
-            @enderror
-        </div>
+        <x-form.input name="first_name" placeholder="First Name" required="true"/>
+        <x-form.input name="last_name" placeholder="Last Name" required="true"/>
+        <x-form.input name="phone" type="tel" placeholder="Phone" required="true"/>
         <button class="btn btn-primary btn-login w-full">Register</button>
     </form>
     <x-slot:footerLink>
