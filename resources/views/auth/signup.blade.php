@@ -1,8 +1,6 @@
 <x-guest-layout title="Signup" bodyClass="page-signup">
     <h1 class="auth-page-title">Signup</h1>
-    @if(session('success'))
-        <div class="success-message">{{session('success')}}</div>
-    @endif
+    <x-alert/>
     <form action="{{route('user.store')}}" method="post">
         @csrf
         <x-form.input name="email" type="email" placeholder="Your Email" autofocus="true" required="true"/>

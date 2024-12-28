@@ -1,6 +1,8 @@
 <x-guest-layout title="Password Reset" bodyClass="page-login">
     <h1 class="auth-page-title">Request Password Reset</h1>
-    <form action="" method="post">
+    <x-alert/>
+    <form action="{{route('user.reset-password')}}" method="post">
+        @csrf
         <x-form.input name="email" type="email" placeholder="Your Email" autofocus="true" required="true"/>
 
         <button class="btn btn-primary btn-login w-full">

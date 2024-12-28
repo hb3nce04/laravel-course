@@ -214,10 +214,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Detailed Description</label>
-                            <textarea rows="10" name="description">{{old('description')}}</textarea>
-                        </div>
+                        <x-form.textarea name="description" label="Detailed Description" rows="10"/>
                         <div class="form-group">
                             <label class="checkbox">
                                 <input type="checkbox" name="published" value="1" @checked(old('published'))/>
@@ -258,3 +255,9 @@
         </div>
     </main>
 </x-app-layout>
+<script>
+    function getCities() {
+        // TODO
+    }
+    console.log('todo')
+</script>

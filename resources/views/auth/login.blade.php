@@ -1,5 +1,6 @@
 <x-guest-layout title="Login" bodyClass="page-login">
     <h1 class="auth-page-title">Login</h1>
+    <x-alert/>
     <form action="{{route('auth.local')}}" method="post">
         @csrf
         <x-form.input name="email" type="text" placeholder="Your Email" autofocus="true" required="true"/>

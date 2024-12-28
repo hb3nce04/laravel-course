@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCarRequest;
 use App\Http\Requests\UpdateCarRequest;
 use App\Models\Car;
-use App\Models\CarFeatures;
 use App\Models\CarImage;
 use App\Models\User;
 use Illuminate\Http\Request;

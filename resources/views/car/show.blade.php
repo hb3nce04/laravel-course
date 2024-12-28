@@ -148,7 +148,7 @@
                     </div>
                     @if($car->owner->phone)
                         <div class="wrapper">
-                            <a id="linkNumber" href="tel:{{\Illuminate\Support\Str::mask($car->owner->phone, '*', -3)}}"
+                            <a id="linkNumber"
                                class="car-details-phone">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -176,7 +176,6 @@
                                     link.href = `tel:${<?php echo $car->owner->phone ?>}`;
                                 })
                             </script>
-
                         </div>
                     @endif
                 </div>
